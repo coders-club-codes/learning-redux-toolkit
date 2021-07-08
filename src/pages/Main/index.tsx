@@ -11,9 +11,9 @@ const Main = () => {
       <S.Title>CodersClub RTK</S.Title>
 
       <S.Wrapper>
-        <ActionsSection setCounter={setCounter} />
+        <ActionsSection />
 
-        <Counter value={counter} />
+        <Counter />
       </S.Wrapper>
 
       <S.Footer>

@@ -1,25 +1,20 @@
 import { Dispatch, SetStateAction } from 'react';
 
+import { useReduxDispatch } from '../../hooks';
+import {
+  decrementCounter,
+  incrementCounter,
+  resetCounter,
+} from '../../store/slices/counter';
 import Button from '../Button';
 import * as S from './styles';
 
-type ActionsSectionProps = {
-  setCounter: Dispatch<SetStateAction<number>>;
-};
+const ActionsSection = () => {
+  const dispatch = useReduxDispatch();
 
-const ActionsSection = ({ setCounter }: ActionsSectionProps) => {
-  const incrementCounter = () => setCounter((prevState) => prevState + 1);
-
-  const decrementCounter = () =>
-    setCounter((prevState) => {
-      if (prevState === 0) {
-        return prevState;
-      }
-
-      return prevState - 1;
-    });
-
-  const resetCounter = () => setCounter(0);
+  const increment = () => dispatch(incrementCounter());
+  const decrement = () => dispatch(decrementCounter());
+  const reset = () => dispatch(resetCounter());
 
   return (
     <S.Container>
@@ -29,15 +24,15 @@ const ActionsSection = ({ setCounter }: ActionsSectionProps) => {
       </p>
 
       <div>
-        <Button type="button" onClick={incrementCounter}>
+        <Button type="button" onClick={increment}>
           Increment
         </Button>
 
-        <Button type="button" onClick={decrementCounter}>
+        <Button type="button" onClick={decrement}>
           Decrement
         </Button>
 
-        <Button type="button" onClick={resetCounter}>
+        <Button type="button" onClick={reset}>
           Reset
         </Button>
       </div>
