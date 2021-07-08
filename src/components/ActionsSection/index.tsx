@@ -4,6 +4,7 @@ import { useReduxDispatch } from '../../hooks';
 import {
   decrementCounter,
   incrementCounter,
+  randomIncrementCounter,
   resetCounter,
 } from '../../store/slices/counter';
 import Button from '../Button';
@@ -15,6 +16,12 @@ const ActionsSection = () => {
   const increment = () => dispatch(incrementCounter());
   const decrement = () => dispatch(decrementCounter());
   const reset = () => dispatch(resetCounter());
+
+  const randomIncrement = () => {
+    const randomNumber = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
+
+    dispatch(randomIncrementCounter(randomNumber));
+  };
 
   return (
     <S.Container>
@@ -34,6 +41,10 @@ const ActionsSection = () => {
 
         <Button type="button" onClick={reset}>
           Reset
+        </Button>
+
+        <Button type="button" onClick={randomIncrement}>
+          Random Increment
         </Button>
       </div>
     </S.Container>
