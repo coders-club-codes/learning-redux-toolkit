@@ -13,7 +13,7 @@ const Main = () => {
       <S.Wrapper>
         <ActionsSection setCounter={setCounter} />
 
-        <Counter value={counter} />
+        <Counter />
       </S.Wrapper>
 
       <S.Footer>
