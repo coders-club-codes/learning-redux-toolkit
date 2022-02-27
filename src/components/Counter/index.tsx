@@ -1,11 +1,12 @@
-/* eslint-disable react-redux/useSelector-prefer-selectors */
-import { useSelector } from 'react-redux';
+import { useCallback } from 'react';
 
-import { ReduxStore } from '../../store/types';
+import { useReduxSelector } from '../../hooks';
 import * as S from './styles';
 
 const Counter = () => {
-  const counter = useSelector<ReduxStore>((state) => state.counter.value);
+  const counter = useReduxSelector(
+    useCallback((state) => state.counter.value, []),
+  );
 
   return <S.Container>{`${counter}`.padStart(2, '0')}</S.Container>;
 };

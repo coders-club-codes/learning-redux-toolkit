@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const counterSlice = createSlice({
   name: '@counter',
@@ -15,9 +15,17 @@ const counterSlice = createSlice({
     resetCounter: (draft) => {
       draft.value = 0;
     },
+    randomIncrementCounter: (draft, action: PayloadAction<number>) => {
+      if (draft.value < 99) draft.value += action.payload;
+    },
   },
 });
 
-export const { ...actions } = counterSlice.actions;
+export const {
+  incrementCounter,
+  decrementCounter,
+  resetCounter,
+  randomIncrementCounter,
+} = counterSlice.actions;
 
 export const counterReducer = counterSlice.reducer;
